@@ -9,13 +9,7 @@ This is empty on purpose! Your code to build the resume will go here.
 // var funthoughts=awesomeThoughts.replace("AWESOME","FUN");
 //  $("#main").append(funthoughts);
 
-// var formattedName=HTMLheaderName.replace("%data%","May");
-// var formattedRole=HTMLheaderRole.replace("%data%","Analyst");
 
-// $("#header").prepend(formattedRole);
-// $("#header").prepend(formattedName);
-
-// var skills="CAS exams"
 
 // $("#main").append(bio.Skills);
 // var work={
@@ -27,11 +21,12 @@ This is empty on purpose! Your code to build the resume will go here.
 // $("#main").append(work["position"]);
 // $("#main").append(education.name);
 
+
 var bio={
 "name":"May",
 "role":"Analyst",
 "Contact Info":"guess",
-"Skills":skills
+"Skills":["CAS exams","js"]
 }
 
 var education=
@@ -54,10 +49,44 @@ var education=
 	]
 }
 
-var work={
-	"position":"Analyst"
+var work=
+{
+	"jobs":[
+	{
+		"position":"Analyst",
+		"employer":"WRBC"
+	},
+	{
+		"position":"TA",
+		"employer":"UWaterloo"
+	}
+	]
 }
 
 var projects={
 	"name":"FMCSA"
+}
+
+var formattedName=HTMLheaderName.replace("%data%",bio.name);
+var formattedRole=HTMLheaderRole.replace("%data%","Analyst");
+
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
+
+if(bio.Skills.length > 0)
+{
+	$("#header").append(HTMLskillsStart);
+	var formattedSkill = HTMLskills.replace("%data%",bio.Skills[0]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%",bio.Skills[1]);
+	$("#skills").append(formattedSkill);
+}
+
+for (job in work.jobs){
+	$("#workExperience").append(HTMLworkStart);
+	var formattedEmployer=HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+	var formattedTitle=HTMLworkTitle.replace("%data%",work.jobs[job].position);
+	var formattedEmployerTitle=formattedEmployer+formattedTitle;
+	$(".work-entry:last").append(formattedEmployerTitle);
 }
