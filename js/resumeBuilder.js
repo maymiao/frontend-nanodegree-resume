@@ -15,7 +15,18 @@ This is empty on purpose! Your code to build the resume will go here.
 // $("#header").prepend(formattedRole);
 // $("#header").prepend(formattedName);
 
-var skills="CAS exams"
+// var skills="CAS exams"
+
+// $("#main").append(bio.Skills);
+// var work={
+// 	"position":"Analyst"
+// }
+// var education={
+// 	"name":"UWaterloo"
+// }
+// $("#main").append(work["position"]);
+// $("#main").append(education.name);
+
 var bio={
 "name":"May",
 "role":"Analyst",
@@ -23,4 +34,30 @@ var bio={
 "Skills":skills
 }
 
-$("#main").append(bio.Skills);
+var education=
+{
+	"schools":[
+	{
+		"name":"UWaterloo"
+	},
+	{
+		"name":"SWUFE"
+	}
+	],
+	"OnlineCourse":[
+	{
+		"Edx":"Python"
+	},
+	{
+		"Udacity":"JS"
+	}
+	]
+}
+
+var work={
+	"position":"Analyst"
+}
+
+var projects={
+	"name":"FMCSA"
+}
