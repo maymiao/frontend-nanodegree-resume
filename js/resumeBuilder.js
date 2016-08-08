@@ -23,20 +23,25 @@ This is empty on purpose! Your code to build the resume will go here.
 
 
 var bio={
-"name":"May",
-"role":"Analyst",
-"Contact Info":"guess",
-"Skills":["CAS exams","js"]
+	"contacts":{
+		"name":"May mmm",
+		"role":"Analyst",
+		"location":"Toronto, ON, Canada",
+		"Contact Info":"guess",
+		"Skills":["CAS exams","js"]
+	}
 }
 
 var education=
 {
 	"schools":[
 	{
-		"name":"UWaterloo"
+		"name":"UWaterloo",
+		"location":"Waterloo, ON, Canada"
 	},
 	{
-		"name":"SWUFE"
+		"name":"SWUFE",
+		"location":"Chengdu, Sichuan, China"
 	}
 	],
 	"OnlineCourse":[
@@ -54,11 +59,13 @@ var work=
 	"jobs":[
 	{
 		"position":"Analyst",
-		"employer":"WRBC"
+		"employer":"WRBC",
+		"location":"Greenwich, CT"
 	},
 	{
 		"position":"TA",
-		"employer":"UWaterloo"
+		"employer":"UWaterloo",
+		"location":"Waterloo, ON, Canada"
 	}
 	]
 }
@@ -78,12 +85,12 @@ $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 
 
-if(bio.Skills.length > 0)
+if(bio.contacts.Skills.length > 0)
 {
 	$("#header").append(HTMLskillsStart);
-	var formattedSkill = HTMLskills.replace("%data%",bio.Skills[0]);
+	var formattedSkill = HTMLskills.replace("%data%",bio.contacts.Skills[0]);
 	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%",bio.Skills[1]);
+	formattedSkill = HTMLskills.replace("%data%",bio.contacts.Skills[1]);
 	$("#skills").append(formattedSkill);
 }
 
@@ -120,14 +127,13 @@ function inName(oldName) {
     return finalName;
 }
 
-console.log(inName("seb thrun")==="Seb THRUN");
+// console.log(inName("seb thrun")==="Seb THRUN");
 
 projects.display=function(){
 	for (project in projects.projects) {
 		$("#projects").append(HTMLprojectStart);
 		var formattedProjectTitle=HTMLprojectTitle.replace("%data%",projects.projects[project].name);
 		$(".project-entry:last").append(formattedProjectTitle);
-		console.log(projects.projects[project].name)
 	}
 }
 projects.display();
