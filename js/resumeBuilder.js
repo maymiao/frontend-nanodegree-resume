@@ -63,8 +63,12 @@ var work=
 	]
 }
 
-var projects={
-	"name":"FMCSA"
+var projects=
+{
+	"projects":[
+	{"name":"FMCSA"},
+	{"name":"BLS"}
+	]
 }
 
 var formattedName=HTMLheaderName.replace("%data%",bio.name);
@@ -83,10 +87,49 @@ if(bio.Skills.length > 0)
 	$("#skills").append(formattedSkill);
 }
 
-for (job in work.jobs){
+function displayWork(){
+	for (job in work.jobs){
 	$("#workExperience").append(HTMLworkStart);
 	var formattedEmployer=HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
 	var formattedTitle=HTMLworkTitle.replace("%data%",work.jobs[job].position);
 	var formattedEmployerTitle=formattedEmployer+formattedTitle;
 	$(".work-entry:last").append(formattedEmployerTitle);
 }
+}
+
+displayWork();
+
+$(document).click(function(loc) {
+  var x=loc.pageX;
+  var y=loc.pageY;
+
+  logClicks(x,y);
+});
+
+$("#main").append(internationalizeButton);
+
+function inName(oldName) {
+	var finalName = oldName;
+	var split=finalName.trim().split(" ");
+    var first=split[0].toLowerCase();
+    var first1=first.substring(0,1);
+    var first1big=first1.toUpperCase();
+    var first2=first.substring(1,first.length);
+    var last=split[1].toUpperCase();    
+    finalName=first1big.concat(first2," ",last);
+    return finalName;
+}
+
+console.log(inName("seb thrun")==="Seb THRUN");
+
+projects.display=function(){
+	for (project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+		var formattedProjectTitle=HTMLprojectTitle.replace("%data%",projects.projects[project].name);
+		$(".project-entry:last").append(formattedProjectTitle);
+		console.log(projects.projects[project].name)
+	}
+}
+projects.display();
+
+$("#mapDiv").append(googleMap);
